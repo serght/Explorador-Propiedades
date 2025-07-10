@@ -8,18 +8,18 @@ export default function CountryCard({ country }: { country: Country }) {
   return (
     <Link
       href={`/${encodeURIComponent(country.name.common)}`}
-      className="bg-white rounded-lg shadow hover:shadow-lg transition p-4"
+      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden"
     >
       <img
         src={country.flags.svg}
         alt={country.flags.alt || `Bandera de ${country.name.common}`}
-        className="w-full h-40 object-cover rounded"
+        className="w-full h-40 object-cover"
       />
-      <div className="mt-4">
+      <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{country.name.common}</h2>
-        <p><strong>Población:</strong> {formatNumber(country.population)}</p>
-        <p><strong>Región:</strong> {country.region}</p>
-        <p><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
+        <p className="text-sm text-grayText"><strong>Población:</strong> {formatNumber(country.population)}</p>
+        <p className="text-sm text-grayText"><strong>Región:</strong> {country.region}</p>
+        <p className="text-sm text-grayText"><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
       </div>
     </Link>
   );

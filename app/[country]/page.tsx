@@ -1,11 +1,20 @@
 // app/[country]/page.tsx
+
 import { getCountryByName, getCountriesByCodes } from '../../service/countriesApi';
 import { formatNumber, getNativeName, formatCurrencies, formatLanguages } from '../../utils/formatters';
 import Link from 'next/link';
 
-export default async function CountryPage({ params }: { params: { country: string } }) {
+interface Props {
+  params: {
+    country: string;
+  };
+}
+
+export default async function CountryPage({ params }: Props) {
+  const decodedName = decodeURIComponent(params.country);
+
   try {
-    const data = await getCountryByName(params.country);
+    const data = await getCountryByName(decodedName);
     const country = data[0];
     const borders = country.borders
       ? await getCountriesByCodes(country.borders)
@@ -31,7 +40,7 @@ export default async function CountryPage({ params }: { params: { country: strin
                 <strong>Países fronterizos:</strong>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {borders.map((border: any) => (
-                    <Link key={border.cca3} href={`/${border.name.common}`} className="px-3 py-1 bg-secondary text-white rounded hover:bg-primary transition">
+                    <Link key={border.cca3} href={`/${border.name.common}`} className="px-3 py-1 bg-softBlue text-white rounded hover:bg-accent transition">
                       {border.name.common}
                     </Link>
                   ))}
@@ -43,6 +52,11 @@ export default async function CountryPage({ params }: { params: { country: strin
       </main>
     );
   } catch (e) {
-    return <div className="text-red-600 p-4">Error al cargar el país.</div>;
+    return (
+      <main className="max-w-4xl mx-auto p-4">
+        <Link href="/" className="text-primary underline mb-4 inline-block">← Volver</Link>
+        <div className="text-red-600">Error al cargar los datos del país.</div>
+      </main>
+    );
   }
 }

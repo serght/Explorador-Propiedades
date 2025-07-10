@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
@@ -7,14 +7,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0000EE',
-        secondary: '#97AAFC',
-        accent: '#6C9FFF',
-        light: '#EEF4FF',
+        primary: '#0A3323',
+        accent: '#0000EE',
+        softBlue: '#97AAFC',
+        softGreen: '#25D366',
+        lightBlue: '#EEF4FF',
         dark: '#001122',
-        green: '#25D366',
         grayText: '#666666',
         white: '#FFFFFF',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
     },
   },
