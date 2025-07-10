@@ -2,6 +2,7 @@ import { getCountryByName, getCountriesByCodes } from '../../service/countriesAp
 import { formatNumber, getNativeName, formatCurrencies, formatLanguages } from '../../utils/formatters';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
+import BorderCountryLink from '../../components/BorderCountryLink';
 
 interface Props {
   params: {
@@ -10,8 +11,12 @@ interface Props {
 }
 
 export default async function CountryPage({ params }: Props) {
+
+  const { country: countryParam } = params;
+  
   try {
-    const decodedName = decodeURIComponent(params.country);
+   
+    const decodedName = decodeURIComponent(countryParam);
     const data = await getCountryByName(decodedName);
     const country = data[0];
 
@@ -57,13 +62,7 @@ export default async function CountryPage({ params }: Props) {
             <h2 className="text-4xl font-bold text-[#083A2B] mb-4">Países fronterizos</h2>
             <div className="flex flex-wrap gap-2">
               {borders.map((border: any) => (
-                <Link
-                  key={border.cca3}
-                  href={`/${border.name.common}`}
-                  className="bg-[#C5F5CA] text-black px-4 py-2 rounded-lg text-sm hover:bg-[#b0e6b8] transition-shadow shadow-sm hover:shadow-md"
-                >
-                  {border.name.common}
-                </Link>
+                <BorderCountryLink key={border.cca3} country={border} />
               ))}
             </div>
           </div>
@@ -76,7 +75,7 @@ export default async function CountryPage({ params }: Props) {
         <Navbar />
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow p-6">
           <h1 className="text-2xl font-semibold text-red-600 mb-4">Error al cargar los datos del país.</h1>
-          <p className="text-grayText mb-6">Es posible que el país no exista o haya un problema con la API.</p>
+          <p className="text-grayText mb-6">Es posible que el país no exista</p>
           <Link
             href="/"
             className="inline-block px-4 py-2 bg-[#6C9FFF] text-white rounded-full hover:bg-[#97AAFC] transition text-lg"
