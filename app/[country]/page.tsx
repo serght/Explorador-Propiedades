@@ -72,7 +72,7 @@ export default async function CountryPage({ params }: Props) {
         )}
       </main>
     );
-  } catch (_error) {
+  } catch {
     return (
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-12 text-center font-sans">
         <Navbar />
