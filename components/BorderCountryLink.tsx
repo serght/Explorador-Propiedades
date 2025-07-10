@@ -3,15 +3,20 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Loader from './Loader';
+import { Country } from '../types/country'; // Ajusta la ruta según tu estructura
 
-export default function BorderCountryLink({ country }: { country: any }) {
+interface BorderCountryLinkProps {
+  country: Country;
+}
+
+export default function BorderCountryLink({ country }: BorderCountryLinkProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="relative">
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-70 rounded-lg">
-          <div className="scale-50"> 
+          <div className="scale-50">
             <Loader />
           </div>
         </div>

@@ -3,6 +3,8 @@ import { formatNumber, getNativeName, formatCurrencies, formatLanguages } from '
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import BorderCountryLink from '../../components/BorderCountryLink';
+import Image from 'next/image';
+import { Country } from '../../types/country';
 
 interface Props {
   params: {
@@ -11,24 +13,20 @@ interface Props {
 }
 
 export default async function CountryPage({ params }: Props) {
-
   const { country: countryParam } = params;
-  
+
   try {
-   
     const decodedName = decodeURIComponent(countryParam);
     const data = await getCountryByName(decodedName);
     const country = data[0];
 
-    const borders = country.borders
-      ? await getCountriesByCodes(country.borders)
-      : [];
+    const borders: Country[] = country.borders ? await getCountriesByCodes(country.borders) : [];
 
     return (
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-8 font-sans text-dark">
         <Navbar />
 
-        {/* flecha */}
+        {/* flecha volver */}
         <Link
           href="/"
           className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit"
@@ -39,11 +37,16 @@ export default async function CountryPage({ params }: Props) {
 
         {/* Detalles del país */}
         <div className="bg-white rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6">
-          <img
-            src={country.flags.svg}
-            alt={country.flags.alt}
-            className="w-full md:w-1/2 h-auto rounded"
-          />
+          <div className="relative w-full md:w-1/2 max-w-md h-60 md:h-auto rounded overflow-hidden">
+            <Image
+              src={country.flags.svg}
+              alt={country.flags.alt || `Flag of ${country.name.common}`}
+              fill
+              className="object-cover rounded"
+              unoptimized
+              priority
+            />
+          </div>
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
             <p className="mb-1"><strong>Nombre nativo:</strong> {getNativeName(country)}</p>
@@ -61,7 +64,7 @@ export default async function CountryPage({ params }: Props) {
           <div className="mt-6">
             <h2 className="text-4xl font-bold text-[#083A2B] mb-4">Países fronterizos</h2>
             <div className="flex flex-wrap gap-2">
-              {borders.map((border: any) => (
+              {borders.map((border) => (
                 <BorderCountryLink key={border.cca3} country={border} />
               ))}
             </div>
@@ -69,7 +72,7 @@ export default async function CountryPage({ params }: Props) {
         )}
       </main>
     );
-  } catch (error) {
+  } catch (_error) {
     return (
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-12 text-center font-sans">
         <Navbar />
