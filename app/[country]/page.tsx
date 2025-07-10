@@ -6,10 +6,11 @@ import BorderCountryLink from '../../components/BorderCountryLink';
 import Image from 'next/image';
 import { Country } from '../../types/country';
 
+// Declaración local segura del tipo Params
+type Params = Record<string, string | string[]>;
+
 interface Props {
-  params: {
-    country: string;
-  };
+  params: Params & { country: string };
 }
 
 export default async function CountryPage({ params }: Props) {
