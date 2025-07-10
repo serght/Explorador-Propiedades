@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Country } from '../types/country';
-import { formatNumber } from '../utils/formatters';
+import { Country } from '@/types/country'
+import { formatNumber } from '@/utils/formatters';
 
 export default function CountryCard({ country }: { country: Country }) {
   return (

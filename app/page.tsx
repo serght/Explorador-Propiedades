@@ -5,7 +5,7 @@ import { useCountries } from '../hooks/useCountries';
 import CountryCard from '../components/CountryCard';
 import SearchFilter from '../components/SearchFilter';
 import Loader from '../components/Loader';
-import Image from 'next/image';
+import Navbar from '../components/Navbar';
 
 export default function HomePage() {
   const { countries, loading, error } = useCountries();
@@ -20,14 +20,9 @@ export default function HomePage() {
 
   return (
     <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-8 font-sans text-dark">
-      {/* Encabezado */}
-      <header className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold">Explora Propiedades</h1>
-        <Image src="/logo.svg" alt="Duppla Logo" width={160} height={40} />
-      </header>
+      <Navbar />
 
-      {/* Filtros */}
-      <section className="bg-white p-4 md:p-6 rounded-2xl shadow-sm mb-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+      <section className="mt-10 mb-10 flex justify-center">
         <SearchFilter
           search={search}
           onSearch={setSearch}
@@ -36,7 +31,6 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Lista de países */}
       {loading && <Loader />}
       {error && <p className="text-red-600 text-center">{error}</p>}
       {!loading && !error && (

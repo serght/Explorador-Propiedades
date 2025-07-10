@@ -1,5 +1,5 @@
-// app/layout.tsx
-import '../styles/globals.css'; // Importa Tailwind aquí
+
+import '../styles/globals.css'; 
 
 export const metadata = {
   title: 'Explorador de Propiedades',
