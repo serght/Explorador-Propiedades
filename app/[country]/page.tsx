@@ -6,11 +6,10 @@ import BorderCountryLink from '../../components/BorderCountryLink';
 import Image from 'next/image';
 import { Country } from '../../types/country';
 
-// Declaración local segura del tipo Params
-type Params = Record<string, string | string[]>;
-
 interface Props {
-  params: Params & { country: string };
+  params: {
+    country: string;
+  };
 }
 
 export default async function CountryPage({ params }: Props) {
@@ -27,7 +26,6 @@ export default async function CountryPage({ params }: Props) {
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-8 font-sans text-dark">
         <Navbar />
 
-        {/* flecha volver */}
         <Link
           href="/"
           className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit"
@@ -36,7 +34,6 @@ export default async function CountryPage({ params }: Props) {
           ←
         </Link>
 
-        {/* Detalles del país */}
         <div className="bg-white rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6">
           <div className="relative w-full md:w-1/2 max-w-md h-60 md:h-auto rounded overflow-hidden">
             <Image
@@ -60,7 +57,6 @@ export default async function CountryPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Países fronterizos */}
         {borders.length > 0 && (
           <div className="mt-6">
             <h2 className="text-4xl font-bold text-[#083A2B] mb-4">Países fronterizos</h2>
