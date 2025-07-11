@@ -32,14 +32,19 @@ The app fetches real-time data from the public REST Countries API and displays r
 
 1. Clone the repository
  git clone https://github.com/serght/Explorador-Propiedades.git
+
  cd prueba-tecnica
 
 2. Install dependencies
+   
 npm install
 
 3. Run the development server
+   
 npm run dev
+
 Frontend will be available at:
+
 http://localhost:3000
 
 📁 Folder Structure
