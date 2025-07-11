@@ -1,10 +1,18 @@
-import { getCountryByName, getCountriesByCodes } from '../../service/countriesApi';
-import { formatNumber, getNativeName, formatCurrencies, formatLanguages } from '../../utils/formatters';
-import Link from 'next/link';
-import Navbar from '../../components/Navbar';
-import BorderCountryLink from '../../components/BorderCountryLink';
-import Image from 'next/image';
-import { Country } from '../../types/country';
+import {
+  getCountryByName,
+  getCountriesByCodes,
+} from "../../service/countriesApi";
+import {
+  formatNumber,
+  getNativeName,
+  formatCurrencies,
+  formatLanguages,
+} from "../../utils/formatters";
+import Link from "next/link";
+import Navbar from "../../components/Navbar";
+import BorderCountryLink from "../../components/BorderCountryLink";
+import Image from "next/image";
+import { Country } from "../../types/country";
 
 interface PageProps {
   params: {
@@ -21,13 +29,18 @@ export default async function CountryPage({ params }: PageProps) {
     const data = await getCountryByName(decodedName);
     const country = data[0];
 
-    const borders: Country[] = country.borders ? await getCountriesByCodes(country.borders) : [];
+    const borders: Country[] = country.borders
+      ? await getCountriesByCodes(country.borders)
+      : [];
 
     return (
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-8 font-sans text-dark">
         <Navbar />
 
-        <Link href="/" className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit">
+        <Link
+          href="/"
+          className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit"
+        >
           ←
         </Link>
 
@@ -43,19 +56,35 @@ export default async function CountryPage({ params }: PageProps) {
           </div>
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
-            <p className="mb-1"><strong>Nombre nativo:</strong> {getNativeName(country)}</p>
-            <p className="mb-1"><strong>Población:</strong> {formatNumber(country.population)}</p>
-            <p className="mb-1"><strong>Región:</strong> {country.region}</p>
-            <p className="mb-1"><strong>Subregión:</strong> {country.subregion || 'N/A'}</p>
-            <p className="mb-1"><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
-            <p className="mb-1"><strong>Monedas:</strong> {formatCurrencies(country.currencies)}</p>
-            <p className="mb-1"><strong>Idiomas:</strong> {formatLanguages(country.languages)}</p>
+            <p className="mb-1">
+              <strong>Nombre nativo:</strong> {getNativeName(country)}
+            </p>
+            <p className="mb-1">
+              <strong>Población:</strong> {formatNumber(country.population)}
+            </p>
+            <p className="mb-1">
+              <strong>Región:</strong> {country.region}
+            </p>
+            <p className="mb-1">
+              <strong>Subregión:</strong> {country.subregion || "N/A"}
+            </p>
+            <p className="mb-1">
+              <strong>Capital:</strong> {country.capital?.[0] || "N/A"}
+            </p>
+            <p className="mb-1">
+              <strong>Monedas:</strong> {formatCurrencies(country.currencies)}
+            </p>
+            <p className="mb-1">
+              <strong>Idiomas:</strong> {formatLanguages(country.languages)}
+            </p>
           </div>
         </div>
 
         {borders.length > 0 && (
           <div className="mt-6">
-            <h2 className="text-4xl font-bold text-[#083A2B] mb-4">Países fronterizos</h2>
+            <h2 className="text-4xl font-bold text-[#083A2B] mb-4">
+              Países fronterizos
+            </h2>
             <div className="flex flex-wrap gap-2">
               {borders.map((border) => (
                 <BorderCountryLink key={border.cca3} country={border} />

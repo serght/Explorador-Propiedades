@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    ignoreBuildErrors: true, // Temporal hasta que Next.js 15.3.6 solucione los bugs
+    ignoreBuildErrors: true, 
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -22,7 +22,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['react-icons'],
   },
-  transpilePackages: ['@types/react', '@types/react-dom'], // Crucial para Vercel
+  transpilePackages: ['@types/react', '@types/react-dom'], 
 }
 
 module.exports = nextConfig

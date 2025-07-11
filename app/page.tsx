@@ -1,19 +1,21 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useCountries } from '../hooks/useCountries';
-import CountryCard from '../components/CountryCard';
-import SearchFilter from '../components/SearchFilter';
-import Loader from '../components/Loader';
-import Navbar from '../components/Navbar';
+import { useState } from "react";
+import { useCountries } from "../hooks/useCountries";
+import CountryCard from "../components/CountryCard";
+import SearchFilter from "../components/SearchFilter";
+import Loader from "../components/Loader";
+import Navbar from "../components/Navbar";
 
 export default function HomePage() {
   const { countries, loading, error } = useCountries();
-  const [search, setSearch] = useState('');
-  const [region, setRegion] = useState('');
+  const [search, setSearch] = useState("");
+  const [region, setRegion] = useState("");
 
   const filtered = countries.filter((country) => {
-    const matchesName = country.name.common.toLowerCase().includes(search.toLowerCase());
+    const matchesName = country.name.common
+      .toLowerCase()
+      .includes(search.toLowerCase());
     const matchesRegion = region ? country.region === region : true;
     return matchesName && matchesRegion;
   });
