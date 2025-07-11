@@ -15,7 +15,7 @@ export default function Navbar() {
           className="object-contain"
         />
       </Link>
-      <span className="text-3xl font-bold text-[#083A2B] mb-3">Explora Propiedades</span>
+      <span className="text-3xl font-bold text-[#083A2B] mb-3">Propiedades</span>
     </nav>
   );
 }

@@ -70,10 +70,28 @@ export default async function CountryPage({ params }: PageProps) {
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-12 text-center font-sans">
         <Navbar />
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow p-6">
-          <h1 className="text-2xl font-semibold text-red-600 mb-4">Error al cargar los datos del país.</h1>
-          <p className="text-grayText mb-6">Es posible que el país no exista</p>
-          <Link href="/" className="inline-block px-4 py-2 bg-[#6C9FFF] text-white rounded-full hover:bg-[#97AAFC] transition text-lg">
-            ←
+          <h1 className="text-2xl font-semibold text-red-600 mb-4">
+            Error al cargar los datos del país.
+          </h1>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center w-10 h-10 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition"
+            aria-label="Volver al inicio"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
           </Link>
         </div>
       </main>
