@@ -6,13 +6,14 @@ import BorderCountryLink from '../../components/BorderCountryLink';
 import Image from 'next/image';
 import { Country } from '../../types/country';
 
-interface Props {
+interface PageProps {
   params: {
     country: string;
   };
+  searchParams?: Record<string, string | string[]>;
 }
 
-export default async function CountryPage({ params }: Props) {
+export default async function CountryPage({ params }: PageProps) {
   const { country: countryParam } = params;
 
   try {
@@ -26,11 +27,7 @@ export default async function CountryPage({ params }: Props) {
       <main className="bg-lightBlue min-h-screen px-4 md:px-12 py-8 font-sans text-dark">
         <Navbar />
 
-        <Link
-          href="/"
-          className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit"
-          aria-label="Volver"
-        >
+        <Link href="/" className="inline-block mb-6 px-3 py-2 bg-[#083A2B] text-white rounded-full hover:bg-[#97AAFC] transition text-lg w-fit">
           ←
         </Link>
 
@@ -41,7 +38,6 @@ export default async function CountryPage({ params }: Props) {
               alt={country.flags.alt || `Flag of ${country.name.common}`}
               fill
               className="object-cover rounded"
-              unoptimized
               priority
             />
           </div>
@@ -76,10 +72,7 @@ export default async function CountryPage({ params }: Props) {
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow p-6">
           <h1 className="text-2xl font-semibold text-red-600 mb-4">Error al cargar los datos del país.</h1>
           <p className="text-grayText mb-6">Es posible que el país no exista</p>
-          <Link
-            href="/"
-            className="inline-block px-4 py-2 bg-[#6C9FFF] text-white rounded-full hover:bg-[#97AAFC] transition text-lg"
-          >
+          <Link href="/" className="inline-block px-4 py-2 bg-[#6C9FFF] text-white rounded-full hover:bg-[#97AAFC] transition text-lg">
             ←
           </Link>
         </div>
