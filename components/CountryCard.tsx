@@ -14,7 +14,7 @@ export default function CountryCard({ country }: { country: Country }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative group transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md">
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-70 rounded-2xl">
           <Loader />
@@ -22,13 +22,13 @@ export default function CountryCard({ country }: { country: Country }) {
       )}
       <Link
         href={`/${encodeURIComponent(country.name.common)}`}
-        className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden block"
+        className="bg-white rounded-2xl shadow-sm overflow-hidden block transition-all duration-300 group-hover:ring-2 group-hover:ring-[#083A2B]"
         onClick={handleClick}
       >
         <img
           src={country.flags.svg}
           alt={country.flags.alt || `Bandera de ${country.name.common}`}
-          className="w-full h-40 object-cover"
+          className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="p-4">
           <h2 className="text-xl font-semibold mb-2">{country.name.common}</h2>
