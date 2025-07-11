@@ -10,7 +10,7 @@ interface Props {
 export default function SearchFilter({ search, onSearch, region, onRegionChange }: Props) {
   return (
     <div className="w-full max-w-3xl flex flex-col sm:flex-row gap-3 items-center justify-center">
-      {/* búsqueda */}
+      {/* Input de búsqueda */}
       <input
         type="text"
         placeholder="Buscar país..."
