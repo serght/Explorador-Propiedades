@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import Loader from './Loader';
-import { Country } from '../types/country';
+import Link from "next/link";
+import { useState } from "react";
+import Loader from "./Loader";
+import { Country } from "../types/country";
 
 interface BorderCountryLinkProps {
   country: Country;

@@ -1,17 +1,20 @@
-import Link from 'next/link';
-import Image from 'next/image'
-import { Country } from '@/types/country'
+import Link from "next/link";
+import Image from "next/image";
+import { Country } from "@/types/country";
 
 interface CountryDetailProps {
-  country: Country
-  borderCountries: Country[]
+  country: Country;
+  borderCountries: Country[];
 }
 
-export default function CountryDetail({ country, borderCountries }: CountryDetailProps) {
+export default function CountryDetail({
+  country,
+  borderCountries,
+}: CountryDetailProps) {
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <Link 
-        href="/" 
+      <Link
+        href="/"
         className="inline-flex items-center px-4 py-2 bg-white shadow-sm rounded-md mb-8 hover:bg-gray-50 transition-colors"
       >
         ← Volver
@@ -29,33 +32,47 @@ export default function CountryDetail({ country, borderCountries }: CountryDetai
         </div>
 
         <div className="space-y-6">
-          <h1 className="text-3xl font-bold text-dark">{country.name.common}</h1>
-          
+          <h1 className="text-3xl font-bold text-dark">
+            {country.name.common}
+          </h1>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
               <p>
-                <span className="font-semibold">Nombre oficial:</span> {country.name.official}
+                <span className="font-semibold">Nombre oficial:</span>{" "}
+                {country.name.official}
               </p>
-              <p><span className="font-semibold">Población:</span> {country.population.toLocaleString()}</p>
-              <p><span className="font-semibold">Región:</span> {country.region}</p>
-              <p><span className="font-semibold">Subregión:</span> {country.subregion || 'N/A'}</p>
-              <p><span className="font-semibold">Capital:</span> {country.capital?.[0] || 'N/A'}</p>
+              <p>
+                <span className="font-semibold">Población:</span>{" "}
+                {country.population.toLocaleString()}
+              </p>
+              <p>
+                <span className="font-semibold">Región:</span> {country.region}
+              </p>
+              <p>
+                <span className="font-semibold">Subregión:</span>{" "}
+                {country.subregion || "N/A"}
+              </p>
+              <p>
+                <span className="font-semibold">Capital:</span>{" "}
+                {country.capital?.[0] || "N/A"}
+              </p>
             </div>
-            
+
             <div className="space-y-2">
               <p>
-                <span className="font-semibold">Moneda:</span> {
-                  country.currencies ? 
-                    Object.values(country.currencies).map(c => c.name).join(', ') : 
-                    'N/A'
-                }
+                <span className="font-semibold">Moneda:</span>{" "}
+                {country.currencies
+                  ? Object.values(country.currencies)
+                      .map((c) => c.name)
+                      .join(", ")
+                  : "N/A"}
               </p>
               <p>
-                <span className="font-semibold">Idiomas:</span> {
-                  country.languages ? 
-                    Object.values(country.languages).join(', ') : 
-                    'N/A'
-                }
+                <span className="font-semibold">Idiomas:</span>{" "}
+                {country.languages
+                  ? Object.values(country.languages).join(", ")
+                  : "N/A"}
               </p>
             </div>
           </div>
@@ -79,5 +96,5 @@ export default function CountryDetail({ country, borderCountries }: CountryDetai
         </div>
       </div>
     </div>
-  )
+  );
 }
